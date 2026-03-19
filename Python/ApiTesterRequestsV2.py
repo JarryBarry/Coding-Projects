@@ -1,5 +1,5 @@
 ##This python code is supposed to test which URL/APIs are online/offline 
-#Created By: ARandomManInTheWilds
+#Created By: ARandomManInTheWilds (Me)
 #V2 includes a timer
 
 import requests
