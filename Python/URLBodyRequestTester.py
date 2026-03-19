@@ -1,5 +1,5 @@
 ##This python code is supposed to check if a page has a certain message which usually means
-#the page doesn't actually exist to find the real pages in the pages that are alive
+#the page doesn't actually exist to find the real pages in the pages that are alive E.g. It says Code 200, it gives a random length for it then this will be used to determine which ones don't contain said message
 #Created By: JarryBarry
 
 import requests
