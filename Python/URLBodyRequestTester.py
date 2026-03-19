@@ -1,6 +1,6 @@
 ##This python code is supposed to check if a page has a certain message which usually means
 #the page doesn't actually exist to find the real pages in the pages that are alive
-#Created By: ARandomManInTheWilds
+#Created By: JarryBarry
 
 import requests
 import fileinput
