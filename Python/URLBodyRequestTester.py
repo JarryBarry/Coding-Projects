@@ -37,8 +37,8 @@ def urlValidityTest():
 
 real_urls, fake_urls, investigate_urls = urlValidityTest()
 
-###The Output file
-with open("ResultsErrorPageFilter.txt", "w") as f:
+###The Output file readable all results
+with open("ResultsErrorPageFilter.txt", "w") as f: 
     f.write("====================\nReal Urls\n====================\n\nAPI|URL:")
     for r in real_urls:
         f.write(f"{r}\n")
@@ -47,4 +47,14 @@ with open("ResultsErrorPageFilter.txt", "w") as f:
         f.write(f"{r}\n")
     f.write("\n====================\nFake Urls\n====================\n\nAPI|URL:")
     for r in fake_urls:
+        f.write(f"{r}\n")
+
+#The Output file only the alive URLs
+with open("UrlsErrorPageFilter", "w") as f:
+    for r in real_urls:
+        f.write(f"{r}\n")
+
+#The Output file only for the investigate URLs incase they are actually live
+with open("UrlsErrorPageFilter", "w") as f:
+    for r in investigate_urls:
         f.write(f"{r}\n")
