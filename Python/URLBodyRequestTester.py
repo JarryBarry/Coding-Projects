@@ -6,15 +6,18 @@ import requests
 import fileinput
 import time
 import random
+import urllib3
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 urlApi = input('Enter a file with URLs|APIs: \n')
 error = input('Enter the error message of the body: \n')
 if error == '':
     error = 'edp[oihugvb nmjhunmlkjoi23u42klwem,dsc vbhjkdsalxz.,lc;]'
 timers = int(input('Enter the amount of time you want the program to sleep in milliseconds: \n')) 
 timers = (timers + random.random()*5)/1000 #To add a delay if the user wants it
-file = fileinput.input(urlApi)
-
+with open(urlApi, "r") as file:
+    lines = file.readlines()
+    
 def urlValidityTest():
     fake_urls = [] #fake urls
     real_urls = [] #real urls
@@ -39,13 +42,13 @@ real_urls, fake_urls, investigate_urls = urlValidityTest()
 
 ###The Output file readable all results
 with open("ResultsErrorPageFilter.txt", "w") as f: 
-    f.write("====================\nReal Urls\n====================\n\nAPI|URL:")
+    f.write("====================\nReal Urls\n====================\n\nAPI|URL:\n")
     for r in real_urls:
         f.write(f"{r}\n")
-    f.write("\n====================\nInvestigate Urls\n====================\n\nAPI|URL:")
+    f.write("\n====================\nInvestigate Urls\n====================\n\nAPI|URL:\n")
     for r in investigate_urls:
         f.write(f"{r}\n")
-    f.write("\n====================\nFake Urls\n====================\n\nAPI|URL:")
+    f.write("\n====================\nFake Urls\n====================\n\nAPI|URL:\n")
     for r in fake_urls:
         f.write(f"{r}\n")
 
