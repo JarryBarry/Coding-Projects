@@ -7,7 +7,7 @@ import time
 import random
 import urllib3
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Stop SSL from being displayed constantly
 urlApi = input('Enter a file with URLs|APIs: \n')
 error = input('Enter the error message of the body: \n')
 if error == '':
@@ -33,8 +33,8 @@ def urlValidityTest():
             else:
                 real_urls.append(strLine)
         except requests.exceptions.RequestException as e:
-                    print(f"The url {strLine} failed: \nStarting Second Test\n")
-                    investigate_urls.append(strLine)
+            print(f"The url {strLine} failed: \nStarting Second Test\n")
+            investigate_urls.append(strLine)
     return real_urls, fake_urls, investigate_urls
 
 real_urls, fake_urls, investigate_urls = urlValidityTest()
