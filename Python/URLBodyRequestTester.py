@@ -50,11 +50,11 @@ with open("ResultsErrorPageFilter.txt", "w") as f:
         f.write(f"{r}\n")
 
 #The Output file only the alive URLs
-with open("UrlsErrorPageFilter", "w") as f:
+with open("UrlsErrorPageFilter.txt", "w") as f:
     for r in real_urls:
         f.write(f"{r}\n")
 
 #The Output file only for the investigate URLs incase they are actually live
-with open("UrlsErrorPageFilter", "w") as f:
+with open("UrlsErrorPageFilter.txt", "w") as f:
     for r in investigate_urls:
         f.write(f"{r}\n")
