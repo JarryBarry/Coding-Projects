@@ -1,10 +1,9 @@
-##This python code is supposed to check if a page has a certain message which usually means
-#the page doesn't actually exist to find the real pages in the pages that are alive E.g. It says Code 200, it gives a random length for it then this will be used to determine which ones don't contain said message
+##This Python tool filters out fake 200 responses by detecting known error page signatures in 
+# the response body using both decoded text and raw byte matching.
 #Created By: JarryBarry
 
 import requests
 import fileinput
-import datetime
 import time
 import random
 
@@ -15,42 +14,37 @@ if error == '':
 timers = int(input('Enter the amount of time you want the program to sleep in milliseconds: \n')) 
 timers = (timers + random.random()*5)/1000 #To add a delay if the user wants it
 file = fileinput.input(urlApi)
-linebreaker = "_________________________________________________________"
 
 def urlValidityTest():
-    try:
-        with open("Results.txt", "a") as f:
-            date = datetime.datetime.now()
-            f.write(f"{linebreaker}\n{date}\n{linebreaker}\n\n")
-        bodyError = False
-        rawUrl = '' #only urls to go through
-        fstrUrl = '' #fake urls
-        rstrUrl = '' #real urls
-        istrUrl = '' #Urls needing investigation from user
-        for line in file:
-            bodyError = False
+    fake_urls = [] #fake urls
+    real_urls = [] #real urls
+    investigate_urls = [] #Urls needing investigation from user
+    for line in file:
+        try:
             time.sleep(timers)
             strLine = line.strip()
-            response = requests.get(strLine, verify=False)
-            temp = str(response.content)
-            if error in temp:
-                bodyError = True
-                fstrUrl = fstrUrl + "\nApi|URL:\n" + strLine + "\nNot Real Link\n\n"
-            elif bodyError == False:
-                rstrUrl = rstrUrl + "\nApi|URL:\n" + strLine + "\nReal Link\n\n"
-                rawUrl = rawUrl + "\n" + strLine
+            response = requests.get(strLine, verify=False, timeout=5)
+            text_match = error.lower() in response.text.lower()
+            byte_match = error.encode() in response.content
+            if text_match or byte_match:
+                fake_urls.append(strLine)
             else:
-                print(f"The url {strLine} failed: \nStarting Second Test\n")
-                istrUrl = istrUrl + "\nApi|URL:\n" + strLine + "\nInvestigate\n\n"
-        with open("BodyResults.txt", "w") as f:
-            f.write("Real Links URLs: \n " + rawUrl + "\n\n\n")
-            f.write("Real Links: \n" + rstrUrl)
-        with open("BodyResults.txt", "a") as f:
-            f.write("Fake Links: \n" + fstrUrl)
-            f.write("Investigate: \n" + istrUrl) 
-    except requests.ConnectionError as e:
-        print(f"\nConnection Error {e}")
-    except Exception as e:
-        print(f"\nError occured: {e} ")
+                real_urls.append(strLine)
+        except requests.exceptions.RequestException as e:
+                    print(f"The url {strLine} failed: \nStarting Second Test\n")
+                    investigate_urls.append(strLine)
+    return real_urls, fake_urls, investigate_urls
 
-urlValidityTest()
+real_urls, fake_urls, investigate_urls = urlValidityTest()
+
+###The Output file
+with open("ResultsErrorPageFilter.txt", "w") as f:
+    f.write("====================\nReal Urls\n====================\n\nAPI|URL:")
+    for r in real_urls:
+        f.write(f"{r}\n")
+    f.write("\n====================\nInvestigate Urls\n====================\n\nAPI|URL:")
+    for r in investigate_urls:
+        f.write(f"{r}\n")
+    f.write("\n====================\nFake Urls\n====================\n\nAPI|URL:")
+    for r in fake_urls:
+        f.write(f"{r}\n")
