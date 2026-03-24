@@ -3,7 +3,6 @@
 #Created By: JarryBarry
 
 import requests
-import fileinput
 import time
 import random
 import urllib3
@@ -17,7 +16,7 @@ timers = int(input('Enter the amount of time you want the program to sleep in mi
 timers = (timers + random.random()*5)/1000 #To add a delay if the user wants it
 with open(urlApi, "r") as file:
     lines = file.readlines()
-    
+
 def urlValidityTest():
     fake_urls = [] #fake urls
     real_urls = [] #real urls
