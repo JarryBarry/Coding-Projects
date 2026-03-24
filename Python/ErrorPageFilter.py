@@ -21,7 +21,7 @@ def urlValidityTest():
     fake_urls = [] #fake urls
     real_urls = [] #real urls
     investigate_urls = [] #Urls needing investigation from user
-    for line in file:
+    for line in lines:
         try:
             time.sleep(timers)
             strLine = line.strip()
