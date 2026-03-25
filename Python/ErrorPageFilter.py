@@ -39,20 +39,27 @@ def classify(items, signature, base_ms, jitter_ms):
             delay = base_ms / 1000
             jitter = random.random() * jitter_ms / 1000
             time.sleep(delay + jitter)
-
-            # request
-            response = requests.get(item, timeout=5, verify=False)
-
-            # match signature
-            text_match = signature.lower() in response.text.lower()
-            byte_match = signature.encode() in response.content
-            is_match = text_match or byte_match
-
-            # route to bucket
-            if is_match:
-                failed.append(item)
+            item_list = []
+            #Check if its in the correct format
+            if not item.startswith("http"):
+                item_list = [f"https://{item}", f"http://{item}"]
             else:
-                passed.append(item)
+                item_list = [item]
+
+            for candidate in item_list:
+                # request
+                response = requests.get(candidate, timeout=5, verify=False)
+
+                # match signature
+                text_match = signature.lower() in response.text.lower()
+                byte_match = signature.encode() in response.content
+                is_match = text_match or byte_match
+
+                # route to bucket
+                if is_match:
+                    failed.append(candidate)
+                else:
+                    passed.append(candidate)
 
         except requests.exceptions.RequestException as e:
             review.append(item)
