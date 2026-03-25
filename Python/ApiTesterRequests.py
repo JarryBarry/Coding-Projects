@@ -1,5 +1,7 @@
-##This python code is supposed to test which URL/APIs are online/offline 
-#Created By: JarryBarry
+"""
+This python code is supposed to test which URL/APIs are online/offline 
+Created By: JarryBarry
+"""
 
 import requests
 import urllib3
