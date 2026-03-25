@@ -1,9 +1,0 @@
-=== Passed (2) ===
-https://www.google.com
-http://www.google.com
-
-=== Review (1) ===
-golfs.cas
-
-=== Failed (0) ===
-
