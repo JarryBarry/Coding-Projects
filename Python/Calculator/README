@@ -1,0 +1,23 @@
+# 🧮 Python CLI Calculator
+
+## Overview
+A lightweight, interactive Command Line Interface (CLI) calculator built in Python. This project serves as a foundational exercise in Python variables, user input handling, and basic arithmetic operations.
+
+## Features
+- Performs basic arithmetic (Addition, Subtraction, Multiplication, Division).
+- Takes continuous user input via the command line.
+- Handles basic edge cases (e.g., preventing application crashes on invalid inputs).
+
+## Concepts Mastered
+- Variables and Data Types
+- Control Flow (`if / elif / else`)
+- Basic Error Handling
+
+## How to Run
+1. Open your terminal and navigate to this folder.
+
+2. Run the script using Python:
+
+   ```bash
+   python calculator.py
+   ```

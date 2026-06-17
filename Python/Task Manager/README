@@ -1,0 +1,27 @@
+# 📋 Task Manager CLI
+
+## Overview
+An Object-Oriented Command Line Application that allows users to manage a daily task list. The application features full data persistence, meaning tasks are saved to the hard drive and reloaded automatically upon restart.
+
+## Features
+- **Add Tasks:** Create new tasks on the fly.
+- **Complete Tasks:** Mark specific tasks as done using their index number.
+- **Track Stats:** View a live summary of completed vs. pending tasks.
+- **Data Persistence:** Saves tasks to a local `tasks.json` file.
+- **Clear Memory:** Securely wipe both the active memory and the hard drive save file.
+
+## Concepts Mastered
+- **Object-Oriented Programming (OOP):** Built using `Task` and `TaskManager` classes (Encapsulation & Composition).
+- **Data Structures:** Heavy utilization of Lists and Dictionaries.
+- **File I/O & Serialization:** Translating custom Python objects into JSON data and back (Deserialization).
+
+## How to Run
+1. Open your terminal and navigate to this folder.
+
+2. Run the application:
+
+   ```bash
+   python task_manager.py
+   ```
+
+3. Follow the on-screen prompts to manage your tasks.

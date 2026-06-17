@@ -1,0 +1,23 @@
+# 📂 File Organizer Automation Tool
+
+## Overview
+A Python automation script designed to clean up messy directories (like a Downloads folder). The script scans a target directory, extracts file extensions, dynamically creates category folders, and safely moves the files into their respective folders.
+
+## Features
+- **Dynamic Sorting:** Automatically creates folders based on found file extensions (e.g., `.jpg`, `.pdf`).
+- **Idempotency:** Can be run safely multiple times without crashing or corrupting files.
+- **Smart Filtering:** Ignores directories, typeless files, and the Python script itself to prevent execution errors.
+
+## Concepts Mastered
+- **OS Module:** Direct interaction with the operating system (`os.listdir`, `os.rename`, `os.mkdir`, `os.chdir`).
+- **String Manipulation:** Advanced string slicing to extract file extensions.
+- **Algorithmic Efficiency:** Refactored from O(n²) to O(n) time complexity by utilizing a single-pass (streaming) processing approach.
+
+## How to Run
+1. Open your terminal and navigate to this folder.
+
+2. Run the script:
+
+   ```bash
+   python organizer.py
+   ```
