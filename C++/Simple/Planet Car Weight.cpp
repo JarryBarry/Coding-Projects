@@ -34,7 +34,6 @@ int main() {
       planetName = "Jupiter";
       break;
     case 5:
-      // Effective gravity at cloud tops is slightly less than Earth's due to low density and fast spin
       planetWeight = earthWeight * 0.916;
       planetName = "Saturn";
       break;
@@ -51,7 +50,7 @@ int main() {
   }
   
   //Output
-  std::cout << "Your planet will be " << planetName << ". Your weight on this planet is " << planetWeight << "kg\n";
+  std::cout << "Your planet is " << planetName << ". Your car's weight on this planet will be " << planetWeight << "kg\n";
    
    return 0;
 }
