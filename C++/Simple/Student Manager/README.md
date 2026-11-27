@@ -11,7 +11,7 @@ g++ -std=c++17 -Wall -Wextra *.cpp -o student_manager
 
 | File | Purpose |
 |---|---|
-| `student.hpp` | `Student` struct and `NUM_SUBJECTS` |
+| `student.hpp` | `Student` struct and `MIN_ID` and `MAX_ID` |
 | `input_utils.hpp/.cpp` | Validated input helpers |
 | `student_manager.hpp/.cpp` | Menu and the six student operations |
 | `file_storage.hpp/.cpp` | Save/load (milestone 2) |
